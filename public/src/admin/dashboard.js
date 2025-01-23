@@ -308,6 +308,8 @@ function setupGraphs(callback) {
 			options: doughnutOpts,
 		});
 
+
+
 		graphs.presence = new Chart(presenceCtx, {
 			type: 'doughnut',
 			data: {
@@ -336,6 +338,10 @@ function setupGraphs(callback) {
 
 		updateTrafficGraph();
 
+		function updateLabel(translated) {
+			('[data-action="updateGraph"][data-units="custom"]').text(translated);
+		}
+
 		$('[data-action="updateGraph"]:not([data-units="custom"])').on('click', function () {
 			let until = new Date();
 			const amount = $(this).attr('data-amount');
@@ -345,10 +351,10 @@ function setupGraphs(callback) {
 			until = until.getTime();
 			updateTrafficGraph($(this).attr('data-units'), until, amount);
 
+
+
 			require(['translator'], function (translator) {
-				translator.translate('[[admin/dashboard:page-views-custom]]', function (translated) {
-					$('[data-action="updateGraph"][data-units="custom"]').text(translated);
-				});
+				translator.translate('[[admin/dashboard:page-views-custom]]', updateLabel);
 			});
 		});
 
