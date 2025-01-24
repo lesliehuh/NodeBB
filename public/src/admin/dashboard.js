@@ -340,7 +340,7 @@ function setupGraphs(callback) {
 
 		function updateLabel(translated) {
 			('[data-action="updateGraph"][data-units="custom"]').text(translated);
-			console.log("success!")
+			console.log("lhuh");
 		}
 
 		$('[data-action="updateGraph"]:not([data-units="custom"])').on('click', function () {
@@ -349,7 +349,6 @@ function setupGraphs(callback) {
 			if ($(this).attr('data-units') === 'days') {
 				until.setHours(0, 0, 0, 0);
 			}
-			console.log ("meep");
 			until = until.getTime();
 			updateTrafficGraph($(this).attr('data-units'), until, amount);
 
